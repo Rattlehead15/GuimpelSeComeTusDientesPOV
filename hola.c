@@ -1,20 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#define acceder(nodo, tipo) (*(tipo*) (nodo->dato)) 
-
-typedef struct _Nodo {
-    void* dato;
-    struct _Nodo* next;
-} Nodo;
-
-typedef Nodo* Lista;
+#include <time.h>
 
 typedef struct {
-char * nombre ;
-int edad ;
-char * lugarDeNacimiento ; // pais o capital
-} Persona ;
+char * nombre;
+int edad;
+char * lugarDeNacimiento;
+} Persona;
+
+#define PERSONAS_DEFAULT 200
+#define BUFFER_DEFAULT 100
 
 // if (i < personasALeer) { // Al principio, se llena el array de personas con las primeras n personas
 //       personas[i] = nueva;
@@ -31,7 +26,8 @@ int main(int argc, char **argv)
 {
     FILE *nombresFile = fopen("nombres1.txt", "r");
     FILE *paisesFile = fopen("paises.txt", "r");
-    int cantPersonas = argc > 1 ? atoi(argv[1]) : 200;
+    int cantPersonas = argc > 1 ? atoi(argv[1]) : PERSONAS_DEFAULT;
+    srand(argc > 2 ? atoi(argv[2]) : time(NULL));
     Persona *personas = (Persona*) malloc(sizeof(Persona) * cantPersonas);
     int cantPaises = 0;
     char buff;
@@ -43,10 +39,39 @@ int main(int argc, char **argv)
     }
     char **paises = (char**) malloc(sizeof(char*) * cantPaises);
     for (int i = 0; i < cantPaises; i++)
-        paises[i] = (char*) malloc(sizeof(char) * 100);
+        paises[i] = (char*) malloc(sizeof(char) * BUFFER_DEFAULT);
 
     rewind(paisesFile);
 
     for(int i = 0; fscanf(paisesFile, "%[^\n]\n", paises[i]) != EOF; i++){}
+
+    char *nombre = (char*) malloc(sizeof(char) * BUFFER_DEFAULT);
+    for (int i = 0; fscanf(nombresFile, "%[^\n]\n", nombre) != EOF; i++)
+    {
+        if (i < cantPersonas)
+        {
+            personas[i].nombre = nombre;
+            personas[i].edad = (rand() % BUFFER_DEFAULT) + 1;
+            personas[i].lugarDeNacimiento = paises[rand() % (cantPaises + 1)];
+        } else {
+            int r = rand() % (i + 1);
+            if (r < cantPersonas)
+            {
+                free(personas[r].nombre);
+                personas[r].nombre = nombre;
+            } else {
+                free(nombre);
+            }
+        }
+
+        nombre = (char*) malloc(sizeof(char) * BUFFER_DEFAULT);
+    }
+
+    FILE *outputFile = fopen("dataset.txt", "w");
+    for (int i = 0; i < cantPersonas; i++)
+    {
+        fprintf(outputFile, "%s, %d, %s\n", personas[i].nombre, personas[i].edad, personas[i].lugarDeNacimiento);
+    }
+
     return 0;
 }
