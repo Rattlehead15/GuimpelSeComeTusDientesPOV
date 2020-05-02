@@ -20,7 +20,9 @@ typedef Nodo* Lista;
 
 typedef int (* Compara ) ( void * dato1 , void * dato2 ) ;
 
-void selection_sort(Lista lista, Compara comp) {
+Lista selection_sort(Lista lista, Compara comp) {
+    Lista l = lista;
+
     for (; lista != NULL; lista=lista->next)
     {
         Lista min = lista;
@@ -36,22 +38,32 @@ void selection_sort(Lista lista, Compara comp) {
         lista->dato = min->dato;
         min->dato = aux;
     }
+
+    return l;
 }
 
-void insertion_sort(Lista lista, Compara comp) {
-    for (; lista != NULL; lista=lista->next)
+Lista insertion_sort(Lista lista, Compara comp) {
+    Lista principio = lista;
+    Lista sig = lista;
+    for (; lista != NULL; lista=sig)
     {
-        for (Lista j = lista; j != NULL; j=j->prev)
+        int yaCambio = 0;
+        sig = lista->next;
+        for (Lista j = lista; j != NULL && !yaCambio; j=j->prev)
         {
-            if(comp(j->dato, lista->dato) && lista->prev != NULL) {
+            if(comp(j->dato, lista->dato)) {
                 if(lista->next != NULL) {
                     lista->next->prev = lista->prev;
                 }
                 lista->prev->next = lista->next;
                 lista->prev = j;
-                j->next->prev = lista;
+                if(j->next != NULL) {
+                    j->next->prev = lista;
+                }
                 lista->next = j->next;
                 j->next = lista;
+
+                yaCambio = 1;
 
             } else if (j->prev == NULL && lista->prev != NULL) {
                 if(lista->next != NULL)
@@ -60,10 +72,13 @@ void insertion_sort(Lista lista, Compara comp) {
                 j->prev = lista;
                 lista->next = j;
                 lista->prev = NULL;
+                principio = lista;
+                yaCambio = 1;
             }
         }
-        
     }
+
+    return principio;
 }
 
 Lista merge(Lista izq, Lista der, Compara comp) {
@@ -123,8 +138,15 @@ int main(int argc, char **argv) {
     free(leer->next);
     leer->next = NULL;
 
-    insertion_sort(lista, compararPorEdad);
+    lista = merge_sort(lista, compararPorEdad);
 
-
+    FILE *coso = fopen("salida.txt", "w");
+    for (; lista != NULL; lista = lista->next)
+    {
+        Persona *pers = (Persona*) lista->dato;
+        fprintf(coso, "%s %d %s\n", pers->nombre, pers->edad, pers->lugarDeNacimiento);
+    }
+    
+    fclose(coso);
     return 0;
 }
