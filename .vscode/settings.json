@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "glist.c": "c",
-        "glist.h": "c"
+        "glist.h": "c",
+        "persona.h": "c",
+        "type_traits": "c"
     }
 }

@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "Debug Ordenar",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}\\Ordenar.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,7 +23,29 @@
                     "ignoreFailures": true
                 }
             ],    
-            "preLaunchTask": "C/C++: gcc.exe build active file"
+            "preLaunchTask": "Make all"
+        },
+        
+        {
+            "name": "Debug Generar",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\Generar.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "F:\\MinGW\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],    
+            "preLaunchTask": "Make all"
         }
     ]
 }
