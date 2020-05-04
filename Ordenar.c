@@ -128,7 +128,7 @@ int main(int argc, char **argv) {
     merge_sort, "merge sort",
     comparar_por_edad, "edad");
 
-/*    probar_algoritmo(salida, lista,
+    probar_algoritmo(salida, lista,
     insertion_sort, "insertion sort",
     comparar_por_largo_de_pais, "largo del pais");
 
@@ -138,7 +138,7 @@ int main(int argc, char **argv) {
 
     probar_algoritmo(salida, lista,
     merge_sort, "merge sort",
-    comparar_por_largo_de_pais, "largo del pais");*/
+    comparar_por_largo_de_pais, "largo del pais");
 
     glist_destruir(lista, persona_destruir_void);
     fclose(salida);
