@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "Persona.h"
+
+typedef struct {
+char * nombre;
+int edad;
+char * lugarDeNacimiento;
+} Persona;
 
 #define PERSONAS_DEFAULT 200
 #define BUFFER_DEFAULT 100
-#define EDAD_MAX 100
 
 // if (i < personasALeer) { // Al principio, se llena el array de personas con las primeras n personas
 //       personas[i] = nueva;
@@ -47,7 +51,7 @@ int main(int argc, char **argv)
         if (i < cantPersonas)
         {
             personas[i].nombre = nombre;
-            personas[i].edad = (rand() % EDAD_MAX) + 1;
+            personas[i].edad = (rand() % BUFFER_DEFAULT) + 1;
             personas[i].lugarDeNacimiento = paises[rand() % (cantPaises + 1)];
         } else {
             int r = rand() % (i + 1);
@@ -63,20 +67,11 @@ int main(int argc, char **argv)
         nombre = (char*) malloc(sizeof(char) * BUFFER_DEFAULT);
     }
 
-    fclose(nombresFile);
-    fclose(paisesFile);
     FILE *outputFile = fopen("dataset.txt", "w");
     for (int i = 0; i < cantPersonas; i++)
     {
         fprintf(outputFile, "%s, %d, %s\n", personas[i].nombre, personas[i].edad, personas[i].lugarDeNacimiento);
     }
-    for(int i = 0; i < cantPersonas; i++){
-        persona_destruir(personas+i);
-    }
-    for(int i = 0; i < cantPaises; i++){
-        free(paises[i]);
-    }
-    free(paises);
-    fclose(outputFile);
+
     return 0;
 }

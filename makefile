@@ -1,6 +1,9 @@
 all: Ordenar.exe Generar.exe
+clean: 
+	rm *.o
+	rm *.exe
 Ordenar.exe: Ordenar.o Persona.o GList.o
-	gcc -g Ordenar.o Persona.o GList.o -o Ordenar.exe
+	gcc -o Ordenar.exe Ordenar.o Persona.o GList.o
 Ordenar.o: Ordenar.c
 	gcc -g -c Ordenar.c
 Persona.o: Persona.c Persona.h
