@@ -39,9 +39,10 @@ int main(int argc, char **argv)
 
     rewind(paisesFile);
 
-    for(int i = 0; i < cantPersonas; i++){
+    for(int i = 0; i < cantPaises; i++){
         fscanf(paisesFile, "%[^\n]\n", paises[i]);
     }
+
 
     char *nombre = (char*) malloc(sizeof(char) * BUFFER_DEFAULT);
     for (int i = 0; fscanf(nombresFile, "%[^\n]\n", nombre) != EOF; i++)
@@ -72,7 +73,7 @@ int main(int argc, char **argv)
     {
         fprintf(outputFile, "%s, %d, %s\n", personas[i].nombre, personas[i].edad, personas[i].lugarDeNacimiento);
     }
-    persona_destruir_gente_y_no_pais(personas, cantPaises);
+    persona_destruir_gente_y_no_pais(personas, cantPersonas);
     for(int i = 0; i < cantPaises; i++){
         free(paises[i]);
     }
