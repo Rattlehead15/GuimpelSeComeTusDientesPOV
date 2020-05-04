@@ -7,6 +7,13 @@ void persona_destruir(Persona *p) {
     free(p);
 }
 
+void persona_destruir_gente_y_no_pais(Persona *p, int cantPersonas) {
+    for(int i = 0; i < cantPersonas; i++){
+        free((p+i)->nombre);
+    }
+    free(p);
+}
+
 void persona_destruir_void(void *p) {
     persona_destruir((Persona*) p);
 }

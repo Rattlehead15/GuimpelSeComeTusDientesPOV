@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 
         nombre = (char*) malloc(sizeof(char) * BUFFER_DEFAULT);
     }
-
+    free(nombre);
     fclose(nombresFile);
     fclose(paisesFile);
     FILE *outputFile = fopen("dataset.txt", "w");
@@ -70,9 +70,7 @@ int main(int argc, char **argv)
     {
         fprintf(outputFile, "%s, %d, %s\n", personas[i].nombre, personas[i].edad, personas[i].lugarDeNacimiento);
     }
-    for(int i = 0; i < cantPersonas; i++){
-        persona_destruir(personas+i);
-    }
+    persona_destruir_gente(personas, cantPersonas);
     for(int i = 0; i < cantPaises; i++){
         free(paises[i]);
     }

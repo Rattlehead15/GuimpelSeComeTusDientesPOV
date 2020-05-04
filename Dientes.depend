@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1588624053 source:c:\users\nahuel\onedrive\escolar\estructuras\dientes\generar.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"Persona.h"
+
+1588624156 c:\users\nahuel\onedrive\escolar\estructuras\dientes\persona.h
+	<stdio.h>
+
+1588622862 source:c:\users\nahuel\onedrive\escolar\estructuras\dientes\glist.c
+	<stdlib.h>
+	"GList.h"
+
+1588622862 c:\users\nahuel\onedrive\escolar\estructuras\dientes\glist.h
+	<stdio.h>
+
+1588605409 source:c:\users\nahuel\onedrive\escolar\estructuras\dientes\ordenar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"GList.h"
+	"Persona.h"
+
+1588624338 source:c:\users\nahuel\onedrive\escolar\estructuras\dientes\persona.c
+	<stdlib.h>
+	"Persona.h"
+

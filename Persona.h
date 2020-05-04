@@ -10,6 +10,8 @@ typedef struct {
 
 void persona_destruir(Persona *p);
 
+void persona_destruir_gente_y_no_pais(Persona *p, int cantPersonas);
+
 void persona_destruir_void(void *p);
 
 Persona* persona_crear();
