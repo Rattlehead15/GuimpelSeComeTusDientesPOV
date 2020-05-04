@@ -1,16 +1,18 @@
+ARGS = -g -Wall -Wextra -Werror -std=c99
+CC = gcc
 all: Ordenar.exe Generar.exe
 clean: 
 	rm *.o
 	rm *.exe
 Ordenar.exe: Ordenar.o Persona.o GList.o
-	gcc -o Ordenar.exe Ordenar.o Persona.o GList.o
+	$(CC) $(ARGS) -o Ordenar.exe Ordenar.o Persona.o GList.o
 Ordenar.o: Ordenar.c
-	gcc -g -c Ordenar.c
+	$(CC) $(ARGS) -c Ordenar.c
 Persona.o: Persona.c Persona.h
-	gcc -g -c Persona.c
+	$(CC) $(ARGS) -c Persona.c
 GList.o: GList.c GList.h
-	gcc -g -c GList.c
+	$(CC) $(ARGS) -c GList.c
 Generar.exe: Generar.o Persona.o
-	gcc -g Generar.o Persona.o -o Generar.exe
+	$(CC) $(ARGS) Generar.o Persona.o -o Generar.exe
 Generar.o: Generar.c
-	gcc -g -c Generar.c
+	$(CC) $(ARGS) -c Generar.c
