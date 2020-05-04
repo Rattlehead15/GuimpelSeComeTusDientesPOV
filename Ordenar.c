@@ -60,9 +60,11 @@ GList merge(GList izq, GList der, Compara comp) {
     if (comp(izq->dato, der->dato) < 0)
     {
         izq->next = merge(izq->next, der, comp);
+        izq->next->prev = izq;
         return izq;
     } else {
         der->next = merge(izq, der->next, comp);
+        der->next->prev = der;
         return der;
     }
 }
@@ -94,7 +96,6 @@ int comparar_por_edad(void *p1, void *p2) {
 int comparar_por_largo_de_pais(void *p1, void *p2) {
     int a = strlen(((Persona*)p1)->lugarDeNacimiento);
     int b = strlen(((Persona*)p2)->lugarDeNacimiento);
-    return a < b ? -1 : a == b ? 0 : 1;
 }
 
 void probar_algoritmo(FILE* salida, GList lista, GList (*algoritmo) (GList, Compara), char *nombreAlg, Compara comparacion, char *nombreComp) {
