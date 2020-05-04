@@ -15,7 +15,7 @@ GList selection_sort(GList lista, Compara comp) {
         GList min = lista;
         for (GList j = lista; j != NULL; j=j->next)
         {
-            if(comp(j->dato, min->dato) < 0) { 
+            if(comp(j->dato, min->dato) < 0) {
                 min = j;
             }
         }
@@ -54,7 +54,7 @@ GList insertion_sort(GList lista, Compara comp) {
 GList merge(GList izq, GList der, Compara comp) {
     if (izq == NULL)
         return der;
-    if (der == NULL) 
+    if (der == NULL)
         return izq;
 
     if (comp(izq->dato, der->dato) < 0)
@@ -71,7 +71,7 @@ GList merge_sort(GList lista, Compara comp) {
     GList izq = lista, der = lista;
     if(lista == NULL || lista->next == NULL)
         return lista;
-    
+
     for(; lista!=NULL && lista->next != NULL; lista=lista->next->next) {
         der = der->next;
     }
@@ -115,29 +115,29 @@ int main(int argc, char **argv) {
 
     FILE *salida = fopen("salida.txt", "w");
 
-    probar_algoritmo(salida, lista, 
-    insertion_sort, "insertion sort", 
+    probar_algoritmo(salida, lista,
+    insertion_sort, "insertion sort",
     comparar_por_edad, "edad");
 
-    probar_algoritmo(salida, lista, 
-    selection_sort, "selection sort", 
+    probar_algoritmo(salida, lista,
+    selection_sort, "selection sort",
     comparar_por_edad, "edad");
 
-    probar_algoritmo(salida, lista, 
-    merge_sort, "merge sort", 
+    probar_algoritmo(salida, lista,
+    merge_sort, "merge sort",
     comparar_por_edad, "edad");
-    
-    probar_algoritmo(salida, lista, 
-    insertion_sort, "insertion sort", 
+
+/*    probar_algoritmo(salida, lista,
+    insertion_sort, "insertion sort",
     comparar_por_largo_de_pais, "largo del pais");
 
-    probar_algoritmo(salida, lista, 
-    selection_sort, "selection sort", 
+    probar_algoritmo(salida, lista,
+    selection_sort, "selection sort",
     comparar_por_largo_de_pais, "largo del pais");
 
-    probar_algoritmo(salida, lista, 
-    merge_sort, "merge sort", 
-    comparar_por_largo_de_pais, "largo del pais");
+    probar_algoritmo(salida, lista,
+    merge_sort, "merge sort",
+    comparar_por_largo_de_pais, "largo del pais");*/
 
     glist_destruir(lista, persona_destruir_void);
     fclose(salida);

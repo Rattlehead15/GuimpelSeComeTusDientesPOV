@@ -35,7 +35,9 @@ void persona_escribir_void(FILE* archivo, void* p) {
 
 void* persona_leer_de_archivo_void(FILE *archivo) {
     Persona* pers = persona_crear();
-    if(fscanf(archivo, "%[^,], %d, %[^\n]\n", pers->nombre, &pers->edad, pers->lugarDeNacimiento) == EOF)
+    if(fscanf(archivo, "%[^,], %d, %[^\n]\n", pers->nombre, &pers->edad, pers->lugarDeNacimiento) == EOF){
+        persona_destruir(pers);
         return NULL;
+    }
     else return (void*) pers;
 }
