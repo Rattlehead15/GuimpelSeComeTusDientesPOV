@@ -122,11 +122,11 @@ int main(int argc, char **argv) {
     selection_sort, "selection sort",
     comparar_por_edad, "edad");
 
-/*    probar_algoritmo(salida, lista,
+    probar_algoritmo(salida, lista,
     merge_sort, "merge sort",
     comparar_por_edad, "edad");
 
-    probar_algoritmo(salida, lista,
+/*    probar_algoritmo(salida, lista,
     insertion_sort, "insertion sort",
     comparar_por_largo_de_pais, "largo del pais");
 
