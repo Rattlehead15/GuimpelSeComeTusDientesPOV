@@ -70,7 +70,7 @@ int main(int argc, char **argv)
     {
         fprintf(outputFile, "%s, %d, %s\n", personas[i].nombre, personas[i].edad, personas[i].lugarDeNacimiento);
     }
-    persona_destruir_gente(personas, cantPersonas);
+    persona_destruir_gente_y_no_pais(personas, cantPersonas);
     for(int i = 0; i < cantPaises; i++){
         free(paises[i]);
     }
