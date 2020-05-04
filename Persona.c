@@ -26,7 +26,7 @@ Persona* persona_crear() {
 }
 
 void persona_escribir(FILE* archivo, Persona* p) {
-    fprintf(archivo, "%s %d %s\n", p->nombre, p->edad, p->lugarDeNacimiento);
+    fprintf(archivo, "%s, %d, %s\n", p->nombre, p->edad, p->lugarDeNacimiento);
 }
 
 void persona_escribir_void(FILE* archivo, void* p) {
