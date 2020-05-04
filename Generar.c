@@ -51,7 +51,7 @@ int main(int argc, char **argv)
         {
             personas[i].nombre = nombre;
             personas[i].edad = (rand() % EDAD_MAX) + 1;
-            personas[i].lugarDeNacimiento = paises[rand() % (cantPaises + 1)];
+            personas[i].lugarDeNacimiento = paises[rand() % cantPaises];
         } else {
             int r = rand() % (i + 1);
             if (r < cantPersonas)
